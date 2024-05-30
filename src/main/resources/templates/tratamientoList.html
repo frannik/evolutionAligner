@@ -1,0 +1,230 @@
+<!doctype html>
+<html  xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/css/index.css" />
+
+        <!-- Fuente Mulish -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;600&display=swap">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+        <!-- CSS de select2 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+            
+        <!-- Styles select2 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+        <!-- Or for RTL support  select2-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+
+        <!-- Scripts select2 -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <title>Listado Tratamientos</title>
+    </head>
+
+    <body>
+        <!-- Navbar-->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-ligth bg-ligth">
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <div class="d-flex align-items-center">
+                            <img class="logo img-fluid w-auto" src="/css/logo1.png" alt="evolution aligner" style="max-height: 100px;">
+                            <form class="d-flex p-3 ms-3">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success fs-6 " type="submit">Buscar</button>
+                            </form>
+                        </div>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><h4>Usuario logueado</h4></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-6 disabled"><h4>Perfil</h4></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Sidebar -->
+        <div class="d-flex" style="height: 100%;">
+            <div class="flex-shrink-0 p-3 bg-primary" id="sidebar" style="width: 280px; height: 100%;">
+                <a href="/" class="d-flex align-items-center pb-3 mb-3 link-light text-decoration-none border-bottom">
+                    <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+                    <span class="fs-5 fw-semibold">Dashboard</span>
+                </a>
+                <ul class="list-unstyled ps-0">
+                    <li class="mb-1">
+                        <button class="fs-6 btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#Usuario-collapse" aria-expanded="true">
+                            <b>Usuarios</b>
+                        </button>
+                        <div class="collapse show" id="Usuario-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a th:href="@{/usuario/lista}" class="link-light fs-6 rounded">Lista de Usuarios</a></li>
+                                <li><a th:href="@{/usuario/registrar}" class="link-light fs-6 rounded">Agregar Usuarios</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button class="fs-6 btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#Paciente-collapse" aria-expanded="false">
+                            <b>Pacientes</b>
+                        </button>
+                        <div class="collapse" id="Paciente-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a th:href="@{/paciente/lista}" class="link-light fs-6 rounded">Lista de Pacientes</a></li>
+                                <li><a href="#" class="link-light fs-6 rounded">Agregar Paciente</a></li>
+                                <li><a href="#" class="link-light fs-6 rounded">Modificar Paciente</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button class="fs-6 btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#Tratamiento-collapse" aria-expanded="false">
+                            <b>Tratamientos</b>
+                        </button>
+                        <div class="collapse" id="Tratamiento-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="link-light fs-6 rounded">Lista de Tratamientos</a></li>
+                                <li><a href="#" class="link-light fs-6 rounded">Agregar Tratamiento</a></li>
+                                <li><a href="#" class="link-light fs-6 rounded">Modificar Tratamiento</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="border-top my-3"></li>
+                    <li class="mb-1">
+                        <button class="fs-6 btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#Odontologos-collapse" aria-expanded="false">
+                            <b>Odontologos</b>
+                        </button>
+                        <div class="collapse" id="Odontologos-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="link-light fs-6 rounded">Lista de Odontólogos</a></li>
+                                <li><a href="#" class="link-light fs-6 rounded">Agregar Odontólogo</a></li>
+                                <li><a href="#" class="link-light fs-6 rounded">Modificar Odontólogo</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="border-top my-3"></li>
+                    <li class="mb-1">
+                        <button class="fs-6 btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#Ortodoncistas-collapse" aria-expanded="false">
+                            <b>Ortodoncistas</b>
+                        </button>
+                        <div class="collapse" id="Ortodoncistas-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="link-light fs-6 rounded">Lista de Ortodoncistas</a></li>
+                                <li><a href="#" class="link-light fs-6 rounded">Agregar Ortodoncista</a></li>
+                                <li><a href="#" class="link-light fs-6 rounded">Modificar Ortodoncista</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="border-top my-3"></li>
+                    <li class="mb-1">
+                        <button class="fs-6 btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#Tecnicos-collapse" aria-expanded="false">
+                            <b>Técnicos</b>
+                        </button>
+                        <div class="collapse" id="Tecnicos-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="link-light fs-6 rounded">Lista de Técnicos</a></li>
+                                <li><a href="#" class="link-light fs-6 rounded">Agregar Técnico</a></li>
+                                <li><a href="#" class="link-light fs-6 rounded">Modificar Técnico</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!--  Formulario -->    
+            <div class="content p-3 bg-dark text-white w-100" style="opacity: 0.8;">
+                <div class="row">
+                    <div class="col-6">
+                        <p class="h1">Listado de Tratamientos</p>                           
+                    </div>
+                    <p class="mb-3 border-top my-3"></p> 
+                    <!--  Card ERRORES -->
+                    <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                        <div class="card-body">
+                            <h5 class="card-title">Error!</h5>
+                            <p class="card-text" th:text="${error}"></p>
+                        </div>
+                    </div>
+                    <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+                        <div class="card-body">
+                            <h5 class="card-title">Exito!</h5>
+                            <p class="card-text" th:text="${exito}"></p>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="d-flex">
+                            <table id="miTabla" class="table table-info table-striped table-hover" >
+                                <thead>
+                                    <tr >
+                                        <th style="vertical-align: middle;" scope="col">#</th>
+                                        <th style="vertical-align: middle; text-align: left;" scope="col">Paciente</th>
+                                        <th style="vertical-align: middle; text-align: left;" scope="col">Odontologo</th>
+                                        <th style="vertical-align: middle; text-align: left;" scope="col">Status.Odonto</th>
+                                        <th style="vertical-align: middle; text-align: left;" scope="col">Ortodoncista</th>
+                                        <th style="vertical-align: middle; text-align: left;" scope="col">Status.Ortodon</th>
+                                        <th style="vertical-align: middle; text-align: left;" scope="col">Tecnico</th>
+                                        <th style="vertical-align: middle; text-align: left;" scope="col">Status.Tec</th>                                  
+                                        <th scope="col" >Más Info / Modificar / Eliminar</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody th:each="tratamiento, iterStat : ${tratamientos}">
+                                    <tr >
+                                        <td style="vertical-align: middle;" th:text="${iterStat.index + 1}"></td>
+                                        <td style="vertical-align: middle; text-align: left;" th:text="${tratamiento.paciente.apellido+' '+tratamiento.paciente.nombre}" ></td>
+                                        <td style="vertical-align: middle; text-align: left;" th:text="${@tratamientoControlador.obtenerNombreOdontologo(tratamiento.listaProfesionales)}">
+                                           
+                                        </td>
+                                        <td style="vertical-align: middle; text-align: left;" th:text="${tratamiento.statusOdontologo}"></td>
+                                        <td style="vertical-align: middle; text-align: left;">
+                                            <span th:text="${@tratamientoControlador.obtenerNombreOrtodoncista(tratamiento.listaProfesionales)}"></span>
+                                        </td>
+                                        <td style="vertical-align: middle; text-align: left;" th:text="${tratamiento.statusOrtodoncita}"></td>
+                                        <td style="vertical-align: middle; text-align: left;">
+                                            <span th:text="${@tratamientoControlador.obtenerNombreTecnico(tratamiento.listaProfesionales)}"></span>
+                                        </td>
+                                        <td style="vertical-align: middle; text-align: left;" th:text="${tratamiento.statusTecnico}"></td>
+                                        
+                                        <td >
+                                            <a th:href="@{/tratamiento/info/__${tratamiento.id}__}" class="btn btn-primary"><i class="bi bi-info-circle"></i></a>
+                                            <a th:href="@{/tratamiento/modificar/__${tratamiento.id}__}" class="btn btn-warning"><i class="bi bi-pen-fill"></i></a>
+                                            <a th:href="@{/tratamiento/eliminar/__${tratamiento.id}__}" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>     
+            </div>
+        </div><!-- comment -->
+        <!-- Optioanal JavaScript; choose one of the two! -->
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+        <!-- DataTable: Agrega la biblioteca-->
+        <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+
+        <script>
+            $(document).ready(function() {
+                $('#miTabla').DataTable();
+            });
+        </script>
+
+
+    </body>
+</html>
+
+
