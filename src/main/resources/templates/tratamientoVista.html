@@ -1,0 +1,300 @@
+<!doctype html>
+<html  xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/css/index.css" />
+
+        <!-- Fuente Mulish -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;600&display=swap">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!-- CSS de select2 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+        <!-- Styles select2 --> 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+        <!-- Or for RTL support  select2-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+
+        <!-- Scripts select2 -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <title>Informacion del Tratamiento</title>
+    </head>
+
+    <body>
+        <!-- Navbar-->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-ligth bg-ligth">
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <div class="d-flex align-items-center">
+                            <img class="logo img-fluid w-auto" src="/css/logo1.png" alt="evolution aligner" style="max-height: 100px;">
+                            <form class="d-flex p-3 ms-3">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success fs-6 " type="submit">Buscar</button>
+                            </form>
+                        </div>
+         
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><h4>Usuario logueado</h4></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-6 disabled"><h4>Perfil</h4></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Sidebar -->
+        <div class="d-flex">
+            <div class="bg-primary text-white min-vh-100 p-3" id="sidebar">
+                <a href="/" class="d-flex align-items-center pb-3 mb-3 text-white text-decoration-none border-bottom">
+                    <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+                    <span class="fs-5 fw-semibold">Dashboard</span>
+                </a>
+                <ul class="list-unstyled ps-0">
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#Usuario-collapse" aria-expanded="false">
+                            <b>Usuarios</b>
+                        </button>
+                        <div class="collapse" id="Usuario-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/usuario/lista" class="text-white rounded">Lista de Usuarios</a></li>
+                                <li><a href="/usuario/registrar" class="text-white rounded">Agregar Usuarios</a></li>
+                               
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#Paciente-collapse" aria-expanded="false">
+                            <b>Pacientes</b>
+                        </button>
+                        <div class="collapse" id="Paciente-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/paciente/lista" class="text-white rounded">Lista de Pacientes</a></li>
+                                <li><a href="/paciente/registrar" class="text-white rounded">Agregar Paciente</a></li>
+                                
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#Tratamiento-collapse" aria-expanded="false">
+                            <b>Tratamientos</b>
+                        </button>
+                        <div class="collapse" id="Tratamiento-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/tratamiento/lista" class="text-white rounded">Lista de Tratameintos</a></li>
+                                <li><a href="/tratamiento/registrar" class="text-white rounded">Agregar Tratamiento</a></li>
+                                
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="border-top my-3"></li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#Odontologos-collapse" aria-expanded="false">
+                            <b>Odontologos</b>
+                        </button>
+                        <div class="collapse" id="Odontologos-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="text-white rounded">Lista de Odontólogos</a></li>
+                                <li><a href="#" class="text-white rounded">Agregar Odontólogo</a></li>
+                               
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="border-top my-3"></li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#Ortodoncistas-collapse" aria-expanded="false">
+                            <b>Ortodoncistas</b>
+                        </button>
+                        <div class="collapse" id="Ortodoncistas-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="text-white rounded">Lista de Ortodoncistas</a></li>
+                                <li><a href="#" class="text-white rounded">Agregar Ortodoncista</a></li>
+                                
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="border-top my-3"></li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#Tecnicos-collapse" aria-expanded="false">
+                            <b>Técnicos</b>
+                        </button>
+                        <div class="collapse" id="Tecnicos-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="text-white rounded">Lista de Técnicos</a></li>
+                                <li><a href="#" class="text-white rounded">Agregar Técnico</a></li>
+                                
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- Overlay para pantallas pequeñas -->
+            <div class="overlay"></div>
+
+            <!--  Formulario -->    
+            
+            <div class="content p-3 bg-dark text-white w-100" >
+                <form action="@{/tratamiento/info/__${tratamiento.id}__}" method="POST" >
+                    <input hidden th:value="${id}" name="id">    
+                    <div class="row">
+                        <div class="col-6">
+                            <p class="h1">Tratamiento del Paciente</p>                           
+                        </div>
+                        <p class="mb-3 border-top my-3"></p>                        
+                    </div>
+                    
+                    <div class="container-fluid">
+                        <div class="row mt-3">
+                            <div class="mb-3 col-2">
+                                <label for="inputApellido" class="form-label">Apellido</label>
+                                <input th:value="${tratamiento.paciente.apellido}" type="text" class="form-control" name="apellido" aria-label="Apellido" disabled>    
+                            </div>
+                            <div class="mb-3 col-2" >
+                                <label for="inputNombre" class="form-label">Nombre</label>
+                                <input th:value="${tratamiento.paciente.nombre}" type="text" class="form-control" name="nombre" aria-label="Nombre" disabled>              
+                            </div>                                            
+                            <div class="mb-3 col-2" >
+                                <label for="inputDni" class="form-label">D.N.I.</label>
+                                <input th:value="${tratamiento.paciente.dni}" type="text" class="form-control" name="dni" aria-label="DNI" disabled>
+                            </div>
+                            <div class="mb-3 col-2" >
+                                <label for="inputTelefono" class="form-label">Telefono</label>
+                                <input th:value="${tratamiento.paciente.telefono}" type="text" class="form-control" name="telefono" aria-label="Telefono" disabled>
+                            </div>
+                            <div class="mb-3 col-2" >
+                                <label for="inputEmail" class="form-label">Email</label>
+                                <input th:value="${tratamiento.paciente.email}" type="text" class="form-control" name="email" aria-label="Email" disabled>
+                            </div>
+                            
+                        </div>
+                        
+
+                        <div class="mb-3 col-4 mt-3">
+                            <p class="h3">Informacion del Tratamiento</p>                           
+                        </div>
+                        <p class="mb-3 border-top my-3"></p>
+                        <div class="row mt-3">
+                            <div class="mb-3 col-2" >
+                                <label for="inputPatologia" class="form-label">Patología</label>
+                                <input th:value="${tratamiento.patologia}" type="text" class="form-control" name="patologia" aria-label="Patología">
+                            </div>
+                            <div class="mb-3 col-2" >
+                                <label for="inputTipoTratamiento" class="form-label">Tipo de Tratamiento</label>
+                                <input th:value="${tratamiento.tipoTratamiento}" type="text" class="form-control" name="tipoTratamiento" aria-label="TipoTratamiento">
+                            </div>
+                            <div class="mb-3 col-2" >
+                                <label for="inputOdontologo" class="form-label">Odontólogo</label>
+                                <input th:value="${@tratamientoControlador.obtenerNombreOdontologo(tratamiento.listaProfesionales)}" type="text" class="form-control" name="odontologo" aria-label="Odontologo">
+                            </div>
+                            <div class="mb-3 col-2 text" >
+                                <label for="inputOrtodoncista" class="form-label">Ortodoncista</label>
+                                <input th:value="${@tratamientoControlador.obtenerNombreOrtodoncista(tratamiento.listaProfesionales)}" type="text" class="form-control" name="ortodoncista" aria-label="Ortodoncista">
+                            </div>
+                            <div class="mb-3 col-2 text" >
+                                <label for="inputTecnico" class="form-label">Técnico</label>
+                                <input th:value="${@tratamientoControlador.obtenerNombreTecnico(tratamiento.listaProfesionales)}" type="text" class="form-control" name="tecnico" aria-label="Tecnico">
+                            </div>
+                            
+                        </div>
+                        <div class="row mt-3 col-6">
+                            <h2>Imágenes del Paciente</h2>
+                            <div th:if="${#lists.isEmpty(tratamiento.imagenesPaciente)}">
+                                <p>No hay imágenes disponibles para este tratamiento.</p>
+                            </div>
+                            <div th:unless="${#lists.isEmpty(tratamiento.imagenesPaciente)}">
+                                <ul class="list-group">
+                                    <li class="list-group-item list-group-item-action" th:each="imagen : ${tratamiento.imagenesPaciente}">
+                                        <span th:text="${imagen.nombre}"></span>
+                                        <a th:href="@{/tratamiento/archivo/{id}(id=${imagen.id})}" class="btn btn-primary ml-2">Descargar</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div>
+                            <a href="/tratamiento/lista" class="btn btn-secondary">Volver a la Lista de Tratamientos</a>
+                        </div>
+                        
+                        
+                    </div>
+                    
+                    
+                    
+                    
+                </form>
+            </div>
+        </div><!-- comment -->
+        <!-- Optioanal JavaScript; choose one of the two! -->
+        <!-- Option 1: Bootstrap Bundle with Popper -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+        <script>
+                      $(document).ready(function() {
+                          $('#paciente').select2({
+                            theme: 'bootstrap-5'
+                          });
+                      });
+        </script>
+        <script>
+                      $(document).ready(function() {
+                          $('#usuario').select2({
+                            theme: 'bootstrap-5'
+                          });
+                      });
+        </script>
+        <script>
+          document.addEventListener('DOMContentLoaded', function () {
+              const sidebar = document.getElementById('sidebar');
+              const overlay = document.querySelector('.overlay');
+        
+        // Toggle sidebar visibility in small screens
+              document.querySelector('.navbar-toggler').addEventListener('click', function () {
+                  sidebar.classList.toggle('active');
+                  overlay.classList.toggle('active');
+              });
+
+        // Hide sidebar when clicking outside of it
+              overlay.addEventListener('click', function () {
+                  sidebar.classList.remove('active');
+                  overlay.classList.remove('active');
+              });
+
+        // Toggle collapse elements
+              document.querySelectorAll('.btn-toggle').forEach(function (button) {
+                  button.addEventListener('click', function () {
+                      const target = document.getElementById(button.getAttribute('data-bs-target').slice(1));
+                      if (target.classList.contains('show')) {
+                          button.setAttribute('aria-expanded', 'false');
+                          target.classList.remove('show');
+                      } else {
+                          document.querySelectorAll('.collapse').forEach(function (collapse) {
+                              collapse.classList.remove('show');
+                          });
+                          button.setAttribute('aria-expanded', 'true');
+                          target.classList.add('show');
+                      }
+                  });
+              });
+          });
+        </script>
+
+
+
+    </body>
+        </html>

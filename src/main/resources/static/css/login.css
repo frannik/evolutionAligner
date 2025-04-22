@@ -1,0 +1,76 @@
+/* Contenedor del logo */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    /* background-color: rgba(240, 240, 240, 0.1); Gris claro semitransparente */
+    background-color: #fff;
+    border-radius: 8px; /* Bordes redondeados suaves */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+}
+
+/* Ajustar el tamaño del logo */
+.logo-container img {
+    max-height: 100px;
+    filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.3)); /* Sombra gris */
+    transition: transform 0.2s ease-in-out;
+}
+
+/* Efecto hover en el logo */
+.logo-container img:hover {
+    transform: scale(1.03); /* Zoom leve */
+}
+
+/* Caja de login */
+.card {
+    background-color: #343a40; /* Fondo oscuro como en patologiasList */
+    color: #ffffff; /* Texto blanco */
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+    padding: 20px; /* Añadido para darle espacio interno */
+}
+
+/* Input del formulario */
+.form-control {
+    background-color: #495057; /* Fondo gris oscuro */
+    color: #ffffff; /* Texto blanco */
+    border: 1px solid #6c757d; /* Borde gris */
+    border-radius: 4px;
+    padding: 10px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Azul al hacer focus */
+    background-color: #343a40; /* Fondo oscuro al hacer focus */
+    color: #ffffff;
+}
+
+/* Botón de login */
+.btn-primary {
+    background-color: #007bff; /* Azul primario */
+    border: none;
+    padding: 10px;
+    font-weight: bold;
+    transition: background-color 0.3s ease-in-out;
+    border-radius: 4px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Azul más oscuro al hacer hover */
+}
+
+/* Texto de enlaces */
+a {
+    color: #007bff; /* Azul primario */
+}
+
+a:hover {
+    color: #0056b3; /* Azul más oscuro al hacer hover */
+}
+
+/* Fondo general de la página */
+body {
+    background-color: #212529; /* Fondo oscuro para todo el body */
+}

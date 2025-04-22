@@ -1,0 +1,708 @@
+<!doctype html>
+<html  xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="/css/index.css" />
+
+        <!-- Fuente Mulish -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;400;600&display=swap">
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <!-- CSS de select2 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+        <!-- Styles select2 --> 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+        <!-- Or for RTL support  select2-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+
+        <!-- Scripts select2 -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <title>Agregar Tratamiento</title>
+    </head>
+
+    <body>
+        <!-- Navbar-->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-ligth bg-ligth">
+                <div class="container-fluid">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <div class="d-flex align-items-center">
+                            <img class="logo img-fluid w-auto" src="/css/logo1.png" alt="evolution aligner" style="max-height: 100px;">
+                            <form class="d-flex p-3 ms-3">
+                                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success fs-6 " type="submit">Buscar</button>
+                            </form>
+                        </div>
+
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><h4>Usuario logueado</h4></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link fs-6 disabled"><h4>Perfil</h4></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Sidebar -->
+        <div class="d-flex">
+            <div class="bg-primary text-white min-vh-100 p-3" id="sidebar">
+                <a href="/" class="d-flex align-items-center pb-3 mb-3 text-white text-decoration-none border-bottom">
+                    <svg class="bi me-2" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
+                    <span class="fs-5 fw-semibold">Dashboard</span>
+                </a>
+                <ul class="list-unstyled ps-0">
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#Usuario-collapse" aria-expanded="false">
+                            <b>Usuarios</b>
+                        </button>
+                        <div class="collapse" id="Usuario-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/usuario/lista" class="text-white rounded">Lista de Usuarios</a></li>
+                                <li><a href="/usuario/registrar" class="text-white rounded">Agregar Usuarios</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#Paciente-collapse" aria-expanded="false">
+                            <b>Pacientes</b>
+                        </button>
+                        <div class="collapse" id="Paciente-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/paciente/lista" class="text-white rounded">Lista de Pacientes</a></li>
+                                <li><a href="/paciente/registrar" class="text-white rounded">Agregar Paciente</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#Tratamiento-collapse" aria-expanded="false">
+                            <b>Tratamientos</b>
+                        </button>
+                        <div class="collapse" id="Tratamiento-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/tratamiento/lista" class="text-white rounded">Lista de Tratameintos</a></li>
+                                <li><a href="/tratamiento/registrar" class="text-white rounded">Agregar Tratamiento</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#Patologías-collapse" aria-expanded="false">
+                            <b>Patologías</b>
+                        </button>
+                        <div class="collapse" id="Patologías-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="/patologias/lista" class="text-white rounded">Lista de Patologías</a></li>
+                                <li><a href="/patologias/registrar" class="text-white rounded">Agregar Patologías</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="border-top my-3"></li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#Odontologos-collapse" aria-expanded="false">
+                            <b>Odontologos</b>
+                        </button>
+                        <div class="collapse" id="Odontologos-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="text-white rounded">Lista de Odontólogos</a></li>
+                                <li><a href="#" class="text-white rounded">Agregar Odontólogo</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="border-top my-3"></li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#Ortodoncistas-collapse" aria-expanded="false">
+                            <b>Ortodoncistas</b>
+                        </button>
+                        <div class="collapse" id="Ortodoncistas-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="text-white rounded">Lista de Ortodoncistas</a></li>
+                                <li><a href="#" class="text-white rounded">Agregar Ortodoncista</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="border-top my-3"></li>
+                    <li class="mb-1">
+                        <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse" data-bs-target="#Tecnicos-collapse" aria-expanded="false">
+                            <b>Técnicos</b>
+                        </button>
+                        <div class="collapse" id="Tecnicos-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li><a href="#" class="text-white rounded">Lista de Técnicos</a></li>
+                                <li><a href="#" class="text-white rounded">Agregar Técnico</a></li>
+
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- Overlay para pantallas pequeñas -->
+            <div class="overlay"></div>
+
+            <!--  Formulario -->        
+            <div class="content p-3 bg-dark text-white w-100" style="opacity: 0.8;">
+                <div class="container">
+                    <form action="/tratamiento/registro" method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-6">
+                                <p class="h1">Agregar Tratamiento a Paciente</p>                           
+                            </div>
+                            <p class="mb-3 border-top my-3"></p> 
+                            <!--  Card ERRORES -->
+                            <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                                <div class="card-body">
+                                    <h5 class="card-title">Error!</h5>
+                                    <p class="card-text" th:text="${error}"></p>
+                                </div>
+                            </div>
+                            <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+                                <div class="card-body">
+                                    <h5 class="card-title">Exito!</h5>
+                                    <p class="card-text" th:text="${exito}"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container-fluid">
+                            <div class="row mt-3">
+                                <div class="col-3">
+                                    <label for="paciente" class="form-label">Seleccionar Paciente Existente:</label>
+                                    <select class="form-select form-control" id="paciente" name="idPaciente" aria-label="Large select example" required>
+                                        <option>Ingrese un Paciente</option>
+                                        <option th:each="paciente : ${pacientes}" th:value="${paciente.id}" th:text="${paciente.nombre+ ' ' + paciente.apellido}"  ></option>
+                                    </select>    
+                                </div>
+
+                                <div class="col-3">
+                                    <label for="patologias" class="form-label">Patologías</label>
+                                    <select name="patologias" class="form-select form-control" multiple aria-label="Multiple select example">
+                                        <option th:each="patologia : ${patologiasDisponibles}"
+                                                th:value="${patologia.id}" th:text="${patologia.nombre}"></option>
+                                    </select>
+                                </div>
+
+                                <div class="col-3">
+                                    <label for="idUsuario" class="form-label">Odontologo Responsable</label>
+                                    <!--  ESTO ES SOLO PARA HACER UNA PRUEBA -->
+                                    <select class="form-select form-control" id="usuario" name="idUsuario" aria-label="Large select example" required>
+                                        <option value="">Selecciona un Odontólogo</option>
+                                        <option th:each="usuario : ${odontologos}" 
+                                                th:value="${usuario.id}" 
+                                                th:text="${usuario.nombre + ' ' + usuario.apellido}">
+                                        </option>
+                                    </select>  
+                                </div>
+
+                                <div class="col-3" >                            
+                                    <label for="tipoTratamiento" class="form-label">Tipo de Tratamiento</label>
+                                    <select name="tipoTratamiento" class="form-select form-control" aria-label="Large select example">
+                                        <option>Eliga uno</option>
+                                        <option th:each="tipoOpt : ${T(com.fran.ogascon.enums.TipoTratamiento).values()}" 
+                                                th:value="${tipoOpt}" th:text="${tipoOpt}"></option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>  
+
+
+                        <div class="mb-3 col-4 mt-3">
+                            <p class="h3">Imagenes y Esudios</p>                           
+                        </div>
+                        <p class="mb-3 border-top my-3"></p>
+                        
+                            <div class="row mt-3">
+                                <div class="mb-3 col-3">
+                                    <label for="rxPanoramica" class="form-label">RX Panorámica:</label>
+                                    <input type="file" class="form-control shadow" id="rxPanoramica" name="rxPanoramica">
+                                </div>
+                                <div class="mb-3 col-3">
+                                    <label for="lateralDer" class="form-label">Imagen Lateral Derecha:</label>
+                                    <input type="file" class="form-control" id="lateralDer" name="lateralDer">
+                                </div>
+                                <div class="mb-3 col-3">
+                                    <label for="lateralIzq" class="form-label">Imagen Lateral Izquierda:</label>
+                                    <input type="file" class="form-control" id="lateralIzq" name="lateralIzq">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="mb-3 col-3">
+                                    <label for="inoclusion" class="form-label">Imagen Inoclusión:</label>
+                                    <input type="file" class="form-control" id="inoclusion" name="inoclusion">
+                                </div>
+                            </div>   
+                            <div class="row mt-3">
+                                <div class="mb-3 col-3">
+                                    <label for="oclusal" class="form-label">Imagen Oclusal:</label>
+                                    <input type="file" class="form-control" id="oclusal" name="oclusal">
+                                </div>
+                                <div class="mb-3 col-3">
+                                    <label for="oclusalSup" class="form-label">Imagen Oclusal Superior:</label>
+                                    <input type="file" class="form-control" id="oclusalSup" name="oclusalSup">
+                                </div>
+                                <div class="mb-3 col-3">
+                                    <label for="oclusalInf" class="form-label">Imagen Oclusal Inferior:</label>
+                                    <input type="file" class="form-control" id="oclusalInf" name="oclusalInf">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="mb-3 col-3">
+                                    <label for="teleradiografia" class="form-label">Telerradiografía:</label>
+                                    <input type="file" class="form-control" id="teleradiografia" name="teleradiografia">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="mb-3 col-3">
+                                    <label for="topografiaConeBean" class="form-label">Topografía Cone Beam:</label>
+                                    <input type="file" class="form-control" id="topografiaConeBean" name="topografiaConeBeam">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="mb-3 col-3">
+                                    <label for="imagenFrente" class="form-label">Imagen de Frente:</label>
+                                    <input type="file" class="form-control" id="imagenFrente" name="imagenFrente">
+                                </div>
+                                <div class="mb-3 col-3">
+                                    <label for="imagenFrenteSonrisa" class="form-label">Imagen de Frente de la Sonrisa:</label>
+                                    <input type="file" class="form-control" id="imagenFrenteSonrisa" name="imagenFrenteSonrisa">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="mb-3 col-3">
+                                    <label for="imagenPerfil" class="form-label">Imagen de Perfil:</label>
+                                    <input type="file" class="form-control" id="imagenPerfil" name="imagenPerfil">
+                                </div>
+                                <div class="mb-3 col-3">
+                                    <label for="imagenPerfilConProyeccion" class="form-label">Imagen de Perfil con Proyección:</label>
+                                    <input type="file" class="form-control" id="imagenPerfilConProyeccion" name="imagenPerfilConProyeccion">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="mb-3 col-3">
+                                    <label for="videoMotivoDeConsulta" class="form-label">Video motivo de la Consulta:</label>
+                                    <input type="file" class="form-control" id="video" name="videoMotivoDeConsulta">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="mb-3 col-3">
+                                    <label for="estudioMcNamara" class="form-label">Estudio de Mc. Namara:</label>
+                                    <input type="file" class="form-control" id="estudioMcNamara" name="estudioMcNamara">
+                                </div>
+                                <div class="mb-3 col-3">
+                                    <label for="estudioRickets" class="form-label">Estudio de Rickets:</label>
+                                    <input type="file" class="form-control" id="estudioRickets" name="estudioRickets">
+                                </div>
+                                <div class="mb-3 col-3">
+                                    <label for="odontograma" class="form-label">Odontograma:</label>
+                                    <input type="file" class="form-control" id="odontograma" name="odontograma">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="mb-3 col-6">
+                                    <label for="prioridadEsteticaPaciente" class="form-label">Prioridad Estetica del Paciente</label>
+                                    <textarea class="form-control" id="prioridadEsteticaPaciente" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <p class="mb-3 border-top my-3"></p>
+                            <div class="row mt-3">
+                                <div class="mb-3">
+                                    <label for="pregunta" class="form-label"><h4>¿Desea corregir la línea media?</h4></label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="siCheckbox" name="corregirLineaMedia" value="si">
+                                    <label class="form-check-label" for="siCheckbox">Sí</label>
+                                </div>
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="noCheckbox" name="corregirLineaMedia" value="no">
+                                    <label class="form-check-label" for="noCheckbox">No</label>
+                                </div>      
+                            </div>
+                            <div id="opcionesCorreccion" th:style="${corregirLineaMedia == 'si' ? '' : 'display: none;'}">
+                                <div class="container-fluid mt-3">
+                                    <div class="row">
+                                        <div class="mb-3 col-5">
+                                            <label class="form-label"><h4>Linea Media SUPERIOR</h4></label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="ningunoSuperior" name="lineaMediaSup" value="Ninguno">
+                                                <label class="form-check-label" for="ningunoSuperior">Ninguno</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="mantenerSuperior" name="lineaMediaSup" value="Mantener Línea Media Superior">
+                                                <label class="form-check-label" for="mantenerSuperior">Mantener Línea Media Superior</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="derechaSuperior" name="lineaMediaSup" value="Mover Línea Media Superior a la DERECHA">
+                                                <label class="form-check-label" for="derechaSuperior">Mover Línea Media Superior a la DERECHA</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="izquierdaSuperior" name="lineaMediaSup" value="Mover Línea Media Superior a la IZQUIERDA">
+                                                <label class="form-check-label" for="izquierdaSuperior">Mover Línea Media Superior a la IZQUIERDA</label>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 col-5">
+                                            <label class="form-label"><h4>Línea Media INFERIOR</h4></label>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="ningunoInferior" name="lineaMediaInf" value="ninguno">
+                                                <label class="form-check-label" for="ningunoInferior">Ninguno</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="mantenerInferior" name="lineaMediaInf" value="Mantener Línea Media Inferior">
+                                                <label class="form-check-label" for="mantenerInferior">Mantener Línea Media Inferior</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="derechaInferior" name="lineaMediaInf" value="Mover Línea Media Inferior a la DERECHA">
+                                                <label class="form-check-label" for="derechaInferior">Mover Línea Media Inferior a la DERECHA</label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="izquierdaInferior" name="lineaMediaInf" value="Mover Línea Media Inferior a la IZQUIERDA">
+                                                <label class="form-check-label" for="izquierdaInferior">Mover Línea Media Inferior a la IZQUIERDA</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-3 border-top my-3"></p>  
+                            <div class="container-fluid mt-3">
+                                <div class="row">
+                                    <label class="form-label"><h4>¿En caso de que queden ESPACIOS, los ubica en?</h4></label>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="espacios" value="Distal de IL">
+                                        <label class="form-check-label" for="superiorMantener">Distal de IL</label>                                  
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="espacios" value="Distal de CS">
+                                        <label class="form-check-label" for="superiorCerrar">Distal de CS</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="espacios" value="Stripping Arcada Opuesta">
+                                        <label class="form-check-label" for="inferiorMantener">Stripping Arcada Opuesta</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="espacios" value="Otros">
+                                        <label class="form-check-label" for="inferiorCerrar">Otros</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="espacios" value="Ninguno">
+                                        <label class="form-check-label" for="inferiorCerrar">Ninguno</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-3 border-top my-3"></p>    
+
+                            <div class="container-fluid mt-3">
+                                <div class="row">
+                                    <label class="form-label"><h4>¿Quiere modificar el OVERBITE?</h4></label>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="overbite" value="Aumentar">
+                                        <label class="form-check-label" for="superiorMantener">Aumentar</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="overbite" value="Disminuir">
+                                        <label class="form-check-label" for="superiorCerrar">Disminuir</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="overbite" value="Ninguno">
+                                        <label class="form-check-label" for="inferiorMantener">Ninguno</label>
+                                    </div> 
+                                </div>                
+                            </div>
+
+                            <p class="mb-3 border-top my-3"></p>
+                            <div class="container-fluid mt-3">
+                                <div class="row">
+                                    <label class="form-label"><h4>¿Quiere modificar el OVERJET?</h4></label>
+                                    <div class="row overflow-hidden">
+                                        <div class="form-check col-2">
+                                            <input class="form-check-input" type="checkbox" name="overjet" value="Aumentar">
+                                            <label class="form-check-label" for="superiorMantener">Aumentar</label>
+                                        </div>
+                                        <div class="form-check col-2">
+                                            <input class="form-check-input" type="checkbox" name="overjet" value="Disminuir">
+                                            <label class="form-check-label" for="superiorCerrar">Disminuir</label>
+                                        </div>
+                                        <div class="form-check col-2">
+                                            <input class="form-check-input" type="checkbox" name="overjet" value="Ninguno">
+                                            <label class="form-check-label" for="inferiorMantener">Ninguno</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-3 border-top my-3"></p>
+                            <div class="container-fluid mt-3">
+                                <label class="form-label"><h4>¿Cómo desea acomodar las discrepancias de ESPACIOS?</h4></label>
+                                <div class="row overflow-hidden">
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="discrepanciaEspacios" value="Superior Mantener">
+                                        <label class="form-check-label" for="superiorMantener">Superior Mantener</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="discrepanciaEspacios" value="Superior Cerrar">
+                                        <label class="form-check-label" for="superiorCerrar">Superior Cerrar</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="discrepanciaEspacios" value="Inferior Mantener">
+                                        <label class="form-check-label" for="inferiorMantener">Inferior Mantener</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="discrepanciaEspacios" value="Inferior Cerrar">
+                                        <label class="form-check-label" for="inferiorMantener">Inferior Cerrar</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="discrepanciaEspacios" value="Ninguno">
+                                        <label class="form-check-label" for="inferiorCerrar">Ninguno</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-3 border-top my-3"></p>
+                            <div class="container-fluid mt-3">
+                                <div class="row">
+                                    <label class="form-label"><h4>En caso de Apiñamiento:</h4></label>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="apinamiento" value="Superior Expandir">
+                                        <label class="form-check-label" for="superiorExpandir">Superior Expandir</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="apinamiento" value="Superior Proclinar">
+                                        <label class="form-check-label" for="superiorProclinar">Superior Proclinar</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="apinamiento" value="Superior Stripping">
+                                        <label class="form-check-label" for="superiorStripping">Superior Stripping</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="apinamiento" value="Inferior Expandir">
+                                        <label class="form-check-label" for="inferiorExpandir">Inferior Expandir</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="apinamiento" value="Inferior Proclinar">
+                                        <label class="form-check-label" for="inferiorProclinar">Inferior Proclinar</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="apinamiento" value="Inferior Stripping">
+                                        <label class="form-check-label" for="inferiorStripping">Inferior Stripping</label>
+                                    </div>
+                                    <div class="form-check col-2">
+                                        <input class="form-check-input" type="checkbox" name="apinamiento" value="Ninguno">
+                                        <label class="form-check-label" for="ninguno">Ninguno</label>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <p class="mb-3 border-top my-3"></p>
+                            <div class="container-fluid mt-3">
+                                <div class="row">
+                                    <label class="form-label"><h4>En Sentido Transversal ¿Desea realizar alguna corrección?</h4></label>
+                                    <div class="row  overflow-hidden">
+                                        <div class="form-check col-2">
+                                            <input class="form-check-input" type="checkbox" name="correccionSentidoTransversal" value="Superior Expandir">
+                                            <label class="form-check-label" for="superiorExpandir">Superior Expandir</label>
+                                        </div>
+                                        <div class="form-check col-2">
+                                            <input class="form-check-input" type="checkbox" name="correccionSentidoTransversal" value="Superior Proclinar">
+                                            <label class="form-check-label" for="superiorProclinar">Superior Proclinar</label>
+                                        </div>
+                                        <div class="form-check col-2">
+                                            <input class="form-check-input" type="checkbox" name="correccionSentidoTransversal" value="Superior Stripping">
+                                            <label class="form-check-label" for="superiorStripping">Superior Stripping</label>
+                                        </div>
+                                        <div class="form-check col-2">
+                                            <input class="form-check-input" type="checkbox" name="correccionSentidoTransversal" value="Inferior Expandir">
+                                            <label class="form-check-label" for="inferiorExpandir">Inferior Expandir</label>
+                                        </div>
+                                        <div class="form-check col-2">
+                                            <input class="form-check-input" type="checkbox" name="correccionSentidoTransversal" value="Inferior Proclinar">
+                                            <label class="form-check-label" for="inferiorProclinar">Inferior Proclinar</label>
+                                        </div>
+                                        <div class="form-check col-2">
+                                            <input class="form-check-input" type="checkbox" name="correccionSentidoTransversal" value="Inferior Stripping">
+                                            <label class="form-check-label" for="inferiorStripping">Inferior Stripping</label>
+                                        </div>
+                                        <div class="form-check col-2">
+                                            <input class="form-check-input" type="checkbox" name="correccionSentidoTransversal" value="Ninguno">
+                                            <label class="form-check-label" for="ninguno">Ninguno</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>   
+                            <p class="mb-3 border-top my-3"></p> 
+                            <div class="container-fluid mt-3">
+                                <div class="row">
+                                    <label class="form-label"><h4>¿Desea NO COLOCAR attachments en alguna pieza?</h4></label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="siCheckbox" name="confirmarAtachments" value="si">
+                                        <label class="form-check-label" for="siCheckbox">Sí</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="noCheckbox" name="confirmarAtachments" value="no">
+                                        <label class="form-check-label" for="noCheckbox">No</label>
+                                    </div>
+                                    <div class="row"> 
+                                        <div class="mb-3 col-5 mt-3">
+                                            <label for="attachments" class="form-label"><h5>Describa brevemente</h5></label>
+                                            <textarea class="form-control" id="comments" name="attachments" rows="3"></textarea>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <p class="mb-3 border-top my-3"></p>
+                            <div class="row overflow-hidden">
+                                <div class="row">
+                                    <div class="mb-3 col-5">
+                                        <label for="attachments" class="form-label"><h4>Observaciones para completar el plan de tratamiento:</h4></label>
+                                        <textarea class="form-control" id="comments" name="observaciones" rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-3 border-top my-3"></p>
+                            <div class="container-fluid mt-3">
+                                <div class="row">
+                                    <div class="mb-3 col-12">
+                                        <p class="h3">Términos Legales</p>                           
+                                    </div>
+                                    <div class="mb-3 col-12">
+                                        <p class="text-justify">Este Plan de Tratamiento constituye su diagnóstico y prescripción final para <b>EVOLUTION ALIGNERS</b>.
+                                            El tratamiento es responsabilidad de quién firma el documento y renuncia a cualquier reclamo contra 
+                                            cualquier representante de <b>EVOLUTION ALIGNERS</b>, representado en Argentina
+                                            por <b>Clínica Privada Gascón S.R.L.</b></p>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="aceptar" value="true">
+                                            <label class="form-check-label" for="aceptar">Acepto los términos</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <p class="border-top my-3"></p> 
+
+                            <div class="col-12">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+
+                    </form>
+
+                </div>
+            </div>
+         </div>
+     </div>
+     <!-- comment -->
+     <!-- Optioanal JavaScript; choose one of the two! -->
+     <!-- Option 1: Bootstrap Bundle with Popper -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+     <script>
+         $(document).ready(function() {
+             $('#miTabla').DataTable();
+         });
+     </script>
+     <script>
+         document.addEventListener('DOMContentLoaded', function () {
+             const sidebar = document.getElementById('sidebar');
+             const overlay = document.querySelector('.overlay');
+
+             // Toggle sidebar visibility in small screens
+             document.querySelector('.navbar-toggler').addEventListener('click', function () {
+                 sidebar.classList.toggle('active');
+                 overlay.classList.toggle('active');
+             });
+
+             // Hide sidebar when clicking outside of it
+             overlay.addEventListener('click', function () {
+                 sidebar.classList.remove('active');
+                 overlay.classList.remove('active');
+             });
+
+             // Toggle collapse elements
+             document.querySelectorAll('.btn-toggle').forEach(function (button) {
+                 button.addEventListener('click', function () {
+                     const target = document.getElementById(button.getAttribute('data-bs-target').slice(1));
+                     if (target.classList.contains('show')) {
+                         button.setAttribute('aria-expanded', 'false');
+                         target.classList.remove('show');
+                     } else {
+                         document.querySelectorAll('.collapse').forEach(function (collapse) {
+                             collapse.classList.remove('show');
+                         });
+                         button.setAttribute('aria-expanded', 'true');
+                         target.classList.add('show');
+                     }
+                 });
+             });
+         });
+     </script>
+
+     <script>
+     $(document).ready(function () {
+         $('#paciente').select2({
+             theme: 'bootstrap-5'
+         });
+     });
+     </script>
+     <script>
+         $(document).ready(function () {
+             $('#usuario').select2({
+                 theme: 'bootstrap-5'
+             });
+         });
+     </script>
+     <script>
+         // Asegurar que solo se pueda seleccionar una opción entre "Sí" y "No"
+         document.getElementById('siCheckbox').addEventListener('change', function () {
+             if (this.checked) {
+                 document.getElementById('noCheckbox').checked = false;
+             }
+         });
+         document.getElementById('noCheckbox').addEventListener('change', function () {
+             if (this.checked) {
+                 document.getElementById('siCheckbox').checked = false;
+             }
+         });
+         // Mostrar u ocultar opciones dependiendo de la selección de "Sí" o "No"
+         document.getElementById('siCheckbox').addEventListener('change', function () {
+             var opcionesCorreccion = document.getElementById('opcionesCorreccion');
+             opcionesCorreccion.style.display = this.checked ? 'block' : 'none';
+         });
+         document.getElementById('noCheckbox').addEventListener('change', function () {
+             var opcionesCorreccion = document.getElementById('opcionesCorreccion');
+             opcionesCorreccion.style.display = this.checked ? 'none' : 'block';
+         });
+     </script>
+     <script th:inline="javascript">
+         $(document).ready(function () {
+             $('input[type="checkbox"]').click(function () {
+                 if ($(this).attr("value") == "yes") {
+                     $("#commentSection").show();
+                 }
+                 if ($(this).attr("value") == "no") {
+                     $("#commentSection").hide();
+                 }
+             });
+         });
+     </script>
+
+</body>
+</html>
+
